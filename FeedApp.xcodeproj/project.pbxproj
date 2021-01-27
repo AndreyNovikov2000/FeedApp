@@ -26,6 +26,10 @@
 		0C49BEE925BF250F004DFCFE /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49BEE825BF250F004DFCFE /* WebImageView.swift */; };
 		0C49BEEC25BF25B0004DFCFE /* ImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49BEEB25BF25B0004DFCFE /* ImageCellViewModel.swift */; };
 		0C49BEEF25BF277A004DFCFE /* UICollectionView + extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49BEEE25BF277A004DFCFE /* UICollectionView + extention.swift */; };
+		0C49BEF925C18197004DFCFE /* TrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49BEF825C18197004DFCFE /* TrackCellViewModel.swift */; };
+		0C49BEFC25C185B4004DFCFE /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C49BEFB25C185B4004DFCFE /* TrackCell.swift */; };
+		0C523EC925C18EC100F6EF5C /* TrackCellDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C523EC825C18EC100F6EF5C /* TrackCellDetailViewModel.swift */; };
+		0C523ECC25C18FB600F6EF5C /* TrackCellDetal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C523ECB25C18FB600F6EF5C /* TrackCellDetal.swift */; };
 		0C534B8525B184D500296B4E /* HTTPRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C534B8425B184D500296B4E /* HTTPRouter.swift */; };
 		0C54556625B19C9D0018F154 /* DecodeRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54556525B19C9D0018F154 /* DecodeRepresentable.swift */; };
 		0C54556C25B19D940018F154 /* ImageUnsplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54556B25B19D940018F154 /* ImageUnsplashService.swift */; };
@@ -76,6 +80,10 @@
 		0C49BEE825BF250F004DFCFE /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		0C49BEEB25BF25B0004DFCFE /* ImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModel.swift; sourceTree = "<group>"; };
 		0C49BEEE25BF277A004DFCFE /* UICollectionView + extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + extention.swift"; sourceTree = "<group>"; };
+		0C49BEF825C18197004DFCFE /* TrackCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellViewModel.swift; sourceTree = "<group>"; };
+		0C49BEFB25C185B4004DFCFE /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		0C523EC825C18EC100F6EF5C /* TrackCellDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellDetailViewModel.swift; sourceTree = "<group>"; };
+		0C523ECB25C18FB600F6EF5C /* TrackCellDetal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellDetal.swift; sourceTree = "<group>"; };
 		0C534B8425B184D500296B4E /* HTTPRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRouter.swift; sourceTree = "<group>"; };
 		0C54556525B19C9D0018F154 /* DecodeRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeRepresentable.swift; sourceTree = "<group>"; };
 		0C54556B25B19D940018F154 /* ImageUnsplashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUnsplashService.swift; sourceTree = "<group>"; };
@@ -152,6 +160,24 @@
 			path = FeedContent;
 			sourceTree = "<group>";
 		};
+		0C523ECF25C194B100F6EF5C /* TrackCells */ = {
+			isa = PBXGroup;
+			children = (
+				0C49BEFB25C185B4004DFCFE /* TrackCell.swift */,
+				0C523ECB25C18FB600F6EF5C /* TrackCellDetal.swift */,
+			);
+			path = TrackCells;
+			sourceTree = "<group>";
+		};
+		0C523ED025C194BB00F6EF5C /* FeedPostCells */ = {
+			isa = PBXGroup;
+			children = (
+				0C54556F25B323090018F154 /* FeedCell.swift */,
+				0C49BEE525BF2480004DFCFE /* FeedCollectionViewCell.swift */,
+			);
+			path = FeedPostCells;
+			sourceTree = "<group>";
+		};
 		0C534B8325B184C400296B4E /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,8 +207,8 @@
 		0C54556E25B322FD0018F154 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				0C54556F25B323090018F154 /* FeedCell.swift */,
-				0C49BEE525BF2480004DFCFE /* FeedCollectionViewCell.swift */,
+				0C523ED025C194BB00F6EF5C /* FeedPostCells */,
+				0C523ECF25C194B100F6EF5C /* TrackCells */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -266,6 +292,8 @@
 				0C9D7F7525B02B420073456D /* FeedViewModel.swift */,
 				0C49BEBC25BE02A8004DFCFE /* FeedCellViewModel.swift */,
 				0C49BEEB25BF25B0004DFCFE /* ImageCellViewModel.swift */,
+				0C49BEF825C18197004DFCFE /* TrackCellViewModel.swift */,
+				0C523EC825C18EC100F6EF5C /* TrackCellDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -473,6 +501,7 @@
 				0C3159EF25B8859300783D74 /* ITunesRouter.swift in Sources */,
 				0C31597B25B7462000783D74 /* ImageUnsplashAPI.swift in Sources */,
 				0C82ADE825B1985C00FD1F17 /* String+extention.swift in Sources */,
+				0C49BEF925C18197004DFCFE /* TrackCellViewModel.swift in Sources */,
 				0C54557725B350C40018F154 /* MainTabBarController.swift in Sources */,
 				0C3159F525B888CC00783D74 /* ITunesAPI.swift in Sources */,
 				0C534B8525B184D500296B4E /* HTTPRouter.swift in Sources */,
@@ -483,6 +512,7 @@
 				0C3159F925B8894100783D74 /* ITunesContent.swift in Sources */,
 				0C9D7F9825B05D6A0073456D /* SparkingView.swift in Sources */,
 				0C49BEEF25BF277A004DFCFE /* UICollectionView + extention.swift in Sources */,
+				0C523ECC25C18FB600F6EF5C /* TrackCellDetal.swift in Sources */,
 				0C49BE8A25BC4679004DFCFE /* UIColor + extention.swift in Sources */,
 				0C49BEE925BF250F004DFCFE /* WebImageView.swift in Sources */,
 				0C54556625B19C9D0018F154 /* DecodeRepresentable.swift in Sources */,
@@ -493,6 +523,7 @@
 				0C31597725B745CC00783D74 /* NewsAPI.swift in Sources */,
 				0CB9AE9125B701CC0047A0B6 /* News.swift in Sources */,
 				0C3159F225B888A900783D74 /* ITunesService.swift in Sources */,
+				0C49BEFC25C185B4004DFCFE /* TrackCell.swift in Sources */,
 				0C31595925B7023F00783D74 /* ImageUnsplash.swift in Sources */,
 				0C54557025B323090018F154 /* FeedCell.swift in Sources */,
 				0C9D7F7A25B02C4D0073456D /* Coordinator.swift in Sources */,
@@ -504,6 +535,7 @@
 				0C3159EC25B883ED00783D74 /* NetworkService.swift in Sources */,
 				0C31595C25B702F800783D74 /* ImageUnsplashRouter.swift in Sources */,
 				0CDEFA4325B197080003987B /* HTTMethods.swift in Sources */,
+				0C523EC925C18EC100F6EF5C /* TrackCellDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

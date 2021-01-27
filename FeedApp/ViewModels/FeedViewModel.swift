@@ -22,15 +22,23 @@ protocol FeedViewModelRepresentable {
 }
 
 final class FeedViewModel: FeedViewModelRepresentable {
+    
+    // MARK: - Instance properties
+    
     var input: (isRefreshing: AnyObserver<Bool>, controlUpdate: Driver<Void>, ())
     var output: (news: Driver<[FeedSectionItem]>, ())
-    let disposeBag = DisposeBag()
 
+    
+    // MARK: - Private properties
+    
     private let newsContentManager = NewsContentManager()
     private let services: FeedViewModelRepresentable.ServicesAPI
     
     private let page = BehaviorSubject<Int>(value: 1)
     private var state: FeedViewModelRepresentable.State = (news: BehaviorRelay(value: []), ())
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - Init
     
     init(input: FeedViewModelRepresentable.Input, services: FeedViewModelRepresentable.ServicesAPI) {
         self.input = input
@@ -100,14 +108,15 @@ extension FeedViewModel {
                 }
                 
             case .trackType:
+                // TODO: Handle tracks cell
                 break
-                // TODO: Track cell
                 var tracksResult = [Track]()
                 itunes.results.forEach { (track) in
                     let newTrack = Track(artistName: track.artistName,
                                          trackName: track.trackName ?? "",
                                          trackImage: track.artworkUrl30 ?? "",
-                                         trackUrl: track.previewUrl ?? "")
+                                         trackUrl: track.previewUrl ?? "",
+                                         collectionName: track.collectionName ?? "")
                     if tracksResult.count < 7 {
                         tracksResult.append(newTrack)
                     }

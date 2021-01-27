@@ -22,6 +22,9 @@ protocol FeedCellViewModelPresentable {
     var imageUrls: [String]? { get }
     
     var tracks: [Track]? { get }
+    
+    func rowSize() -> CGFloat
+    func collectionViewFrame() -> CGRect
 }
 
 final class FeedCellViewModel: FeedCellViewModelPresentable {
@@ -65,6 +68,43 @@ final class FeedCellViewModel: FeedCellViewModelPresentable {
         imageUrls = news.imageUrls
         
         tracks = news.tracks
+    }
+}
+
+extension FeedCellViewModel {
+    func rowSize() -> CGFloat {
+        switch feedType {
+        case .imageContentType:
+            switch imageUrls?.count ?? 1 {
+            case 1:
+                return K.FeedSizes.layout1Size
+            case 2:
+                return K.FeedSizes.layout2Size
+            case 3:
+                return K.FeedSizes.layout3Size
+            case 4:
+                return K.FeedSizes.layout4Size
+            default:
+                return 0
+            }
+            
+        case .trackType:
+            let count = tracks?.count ?? 0
+            // 16 padding + 50 imageView + 10 padding to album imageView + 10 padding to tableView + 10 padding to bottom
+            let constantHeight: CGFloat = 16 + 50 + 10 + 10 + 10
+            let tableViewHeight = CGFloat(count) * K.FeedSizes.imageTrackCellSize
+            return constantHeight + tableViewHeight
+        }
+    }
+    
+    func collectionViewFrame() -> CGRect {
+        let widht = UIScreen.main.bounds.width
+        let yOrigin: CGFloat = 10 + 50 + 10
+        
+        return CGRect(x: 0,
+                      y: yOrigin,
+                      width: widht,
+                      height: rowSize() - yOrigin - 10)
     }
 }
 

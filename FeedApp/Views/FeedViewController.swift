@@ -19,8 +19,8 @@
     // MARK: - Private properties
     
     private var feedViewModel: FeedViewModelRepresentable!
-    private var didScroll: BehaviorRelay<CGPoint> = BehaviorRelay<CGPoint>(value: .zero)
     private let disposeBag = DisposeBag()
+    private var tableViewHeights = BehaviorRelay<[CGFloat]?>.init(value: [])
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<FeedSectionItem>.init { (_, tableView, indexPath, item) -> UITableViewCell in
         switch item.feedType {
@@ -35,7 +35,10 @@
             
             return cell
         case .trackType:
-            return UITableViewCell()
+            let trackCell = tableView.dequeueReusableCell(withIdentifier: TrackCell.reuseID, for: indexPath) as! TrackCell
+            let trackCellViewModel = TrackCellViewModel(feedCellViewModel: item)
+            trackCell.configure(withTrackCellViewModel: trackCellViewModel)
+            return trackCell
         }
     }
     
@@ -95,6 +98,7 @@
         tableView.frame = view.bounds
         tableView.tableFooterView = UIView()
         tableView.register(FeedCell.self, forCellReuseIdentifier: FeedCell.reusseID)
+        tableView.register(TrackCell.self, forCellReuseIdentifier: TrackCell.reuseID)
         tableView.rowHeight = 300
         tableView.separatorStyle = .none
         tableView.backgroundColor = .backgroundWhite
@@ -119,6 +123,7 @@
         
         let input =  (isRefreshing: isRefreshing, controlUpdate: controlUpdate, ())
         feedViewModel = builder(input)
+        feedViewModel.output.news.map({ $0.first }).map({ $0?.items }).map({ $0.map({ $0.map({ $0.rowSize() }) }) }).asDriver().drive(tableViewHeights).disposed(by: disposeBag)
         feedViewModel.output.news.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
     }
   }
@@ -127,13 +132,13 @@
   // MARK: - UITableViewDelegate
   
   extension FeedViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return tableViewHeights.value?[indexPath.row] ?? 0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return tableViewHeights.value?[indexPath.row] ?? 0
     }
   }
   

@@ -30,4 +30,5 @@ struct Track {
     let trackName: String
     let trackImage: String
     let trackUrl: String
+    let collectionName: String
 }

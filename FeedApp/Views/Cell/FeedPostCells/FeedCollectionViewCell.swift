@@ -21,7 +21,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI
     
-    
     let imageView: WebImageView = {
         let imageView = WebImageView()
         imageView.clipsToBounds = true
@@ -30,7 +29,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-    
     
     // MARK: - Object livecycle
     

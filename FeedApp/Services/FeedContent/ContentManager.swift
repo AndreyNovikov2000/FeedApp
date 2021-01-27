@@ -26,7 +26,7 @@ struct NewsContentManager {
     
     func getFeedType() -> FeedType {
         let randomValue = Int.random(in: 1...10)
-        let feedType: FeedType = randomValue > 8 ? .trackType : .imageContentType
+        let feedType: FeedType = randomValue > 6 ? .trackType : .imageContentType
         return feedType
     }
 }

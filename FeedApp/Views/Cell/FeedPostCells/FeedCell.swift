@@ -70,32 +70,7 @@ class FeedCell: UITableViewCell {
         label.textAlignment = .left
         return label
     }()
-    
-    let postTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = .systemFont(ofSize: 16)
-        textView.isScrollEnabled = false
-        textView.isSelectable = true
-        textView.isUserInteractionEnabled = true
-        textView.isEditable = false
         
-        
-        let padding = textView.textContainer.lineFragmentPadding
-        textView.contentInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
-        textView.dataDetectorTypes = UIDataDetectorTypes.all
-        return textView
-    }()
-    
-    let moreTextButtom: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        button.setTitleColor(#colorLiteral(red: 0.3490949869, green: 0.442735225, blue: 1, alpha: 1), for: .normal)
-        button.setTitle("Show more...", for: .normal)
-        button.contentHorizontalAlignment = .leading
-        button.contentVerticalAlignment = .center
-        return button
-    }()
-    
     private lazy var dataSource = RxCollectionViewSectionedReloadDataSource<ImageSectionItem>.init { (_, collectionView, indexPath, item) -> UICollectionViewCell in
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCollectionViewCell.reuseID, for: indexPath) as! FeedCollectionViewCell
         cell.configureImage(withItem: item)
@@ -129,7 +104,6 @@ class FeedCell: UITableViewCell {
         super.layoutSubviews()
        
         imageAvatarView.layer.cornerRadius = imageAvatarView.frame.height / 2
-        collectionView.frame = CGRect(origin: CGPoint(x: 0, y: 10 + 50 + 10), size: CGSize(width: contentView.frame.width, height: 200))
     }
     
     override func prepareForReuse() {
@@ -142,11 +116,14 @@ class FeedCell: UITableViewCell {
     // MARK: - Insstance methods
     
     func configure(item: FeedCellViewModelPresentable) {
+        imageAvatarView.set(imageUrl: item.avatarImageUrlString)
+        
         nameLabel.text = item.title
         dateLabel.text = item.formattedDate
-        
-        imageAvatarView.set(imageUrl: item.avatarImageUrlString)
+       
         collectionView.collectionViewLayout = UICollectionView.getLayout(count: item.imageUrls?.count ?? 1)
+        collectionView.frame = item.collectionViewFrame()
+        
         currentItem = item
             
         let imageCellViewModels = (item.imageUrls?.compactMap({ $0 }).map({ ImageCellViewModel(urlString: $0) }))!
@@ -176,7 +153,6 @@ class FeedCell: UITableViewCell {
         bubleView.addSubview(imageAvatarView)
         bubleView.addSubview(nameLabel)
         bubleView.addSubview(dateLabel)
-        bubleView.addSubview(collectionView)
         bubleView.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
