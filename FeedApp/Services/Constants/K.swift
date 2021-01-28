@@ -25,7 +25,7 @@ struct K {
     
     
     enum APIKey {
-        static let newsApiKey = "709cad85b3b54de090143a9f317c98a5"
+        static let newsApiKey = "67cb245ec0df450484e5c86932977389"
         static let imageUnspashAPIKey = "cXGzxKCGkVaE6tAof-tX1RY45G0gs85gPUo4wPBz8as"
     }
     
